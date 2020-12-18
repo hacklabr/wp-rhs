@@ -29,3 +29,4 @@ tests/wordpress-tests-lib/wp-tests-config.php
 deploy_rsa.enc
 .DS_Store
 tests/wordpress-tests-lib/
+compose/local/mariadb/data/*.sql
