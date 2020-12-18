@@ -15,21 +15,30 @@ class RHSRegister extends RHSMessage {
 
         if ($_isPOST && $_isRegister) {
 
+            error_log("BEFORE is_email_blacklisted");
+
+
             if ($this->is_email_blacklisted($_POST['mail'])) {
                 return;
             }
 
+            error_log("BEFORE validate_by_post");
+
+
             if (!$this->validate_by_post()) {
                 return;
             }
+            error_log("BEFORE HONEYPOT");
 
             // HoneyPot fields
-            if ((isset($_POST['phone']) && !empty($_POST['phone'])) ||
-                (isset($_POST['user_login']) && !empty($_POST['user_login'])) ||
-                (isset($_POST['confirm_mail']) && !empty($_POST['confirm_mail']))) {
+            if ((isset($_POST['mail']) && empty($_POST['mail'])) ||
+                (isset($_POST['pass']) && empty($_POST['pass'])) ||
+                (isset($_POST['mail_confirm']) && empty($_POST['mail_confirm']))) {
 
                 return;
             }
+
+            error_log("BEFORE insert");
 
             $this->insert(
                 $_POST['mail'],
@@ -44,6 +53,7 @@ class RHSRegister extends RHSMessage {
     }
 
     function insert( $mail, $first_name, $last_name, $pass, $description, $state, $city ) {
+        error_log("insert");
 
         $userdata = array(
             'user_login'  => wp_strip_all_tags( trim( $mail ) ),
@@ -58,6 +68,11 @@ class RHSRegister extends RHSMessage {
         );
 
         $user_id = wp_insert_user( $userdata );
+
+        if(is_wp_error( $user_id )) {
+            error_log("ERRO WORPDRESS");
+            error_log(json_encode($user_id));
+        }
         
         rhs_new_user_notification($user_id, $pass);
         
@@ -115,6 +130,12 @@ class RHSRegister extends RHSMessage {
     function validate_by_post() {
 
         $this->clear_messages();
+
+        if ( email_exists( $_POST['mail'] ) ) {
+            $this->set_error('Email já está em uso!');
+
+            return false;
+        }
 
         if ( ! array_key_exists( 'mail', $_POST ) ) {
             $this->set_error('Preencha o seu email!');
