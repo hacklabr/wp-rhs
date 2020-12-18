@@ -14,6 +14,7 @@ class RHSRegister extends RHSMessage {
         $_isRegister = !empty($_POST['register_user_wp']) && $_POST['register_user_wp'] == $this->getKey();
 
         if ($_isPOST && $_isRegister) {
+
             if ($this->is_email_blacklisted($_POST['mail'])) {
                 return;
             }
@@ -21,10 +22,11 @@ class RHSRegister extends RHSMessage {
             if (!$this->validate_by_post()) {
                 return;
             }
-
+            
             // HoneyPot fields
-            if ((isset($_POST['mail']) && empty($_POST['mail'])) ||
-                (isset($_POST['pass']) && empty($_POST['pass']))) {
+            if ((isset($_POST['phone']) && !empty($_POST['phone'])) ||
+                (isset($_POST['user_login']) && !empty($_POST['user_login'])) ||
+                (isset($_POST['confirm_mail']) && !empty($_POST['confirm_mail']))) {
 
                 return;
             }
@@ -42,7 +44,6 @@ class RHSRegister extends RHSMessage {
     }
 
     function insert( $mail, $first_name, $last_name, $pass, $description, $state, $city ) {
-        error_log("insert");
 
         $userdata = array(
             'user_login'  => wp_strip_all_tags( trim( $mail ) ),
@@ -114,12 +115,6 @@ class RHSRegister extends RHSMessage {
     function validate_by_post() {
 
         $this->clear_messages();
-
-        if ( email_exists( $_POST['mail'] ) ) {
-            $this->set_error('Email já está em uso!');
-
-            return false;
-        }
 
         if ( ! array_key_exists( 'mail', $_POST ) ) {
             $this->set_error('Preencha o seu email!');

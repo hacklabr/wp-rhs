@@ -44,18 +44,16 @@ $_confirm_email = "Confirme seu e-mail";
                                     <div class="col-md-6 form-group float-label-control" id="confirm_email">
                                         <label for="confirm_mail" class="col-sm-1 control-label"> <?php echo $_confirm_email; ?> <span class="required">*</span></label>
                                         <div class="col-sm-12">
-                                            <input class="form-control form-text" id="confirm_mail" name="confirm_mail" maxlength="254">
+                                            <input class="form-control form-text" tabindex="-1" autocomplete="false" id="confirm_mail" name="confirm_mail" maxlength="254">
                                         </div>
                                     </div>
 
-                                    <?php if( rand(0,2) == 0 ): ?>
                                         <div class="form-group float-label-control no-padding" id="u_login">
                                             <label for="user_login" class="col-sm-1 control-label">Login <span class="required">*</span></label>
                                             <div class="col-sm-7">
-                                                <input class="form-control form-text" type="text" id="user_login" name="user_login" maxlength="254">
+                                                <input class="form-control form-text" tabindex="-1" autocomplete="false" type="number" id="user_login" name="user_login" maxlength="254">
                                             </div>
                                         </div>
-                                    <?php endif; ?>
 
                                     <div class="col-md-6 form-group float-label-control no-padding-left">
                                             <label for="pass" class="no-padding control-label">Senha <span class="required">*</span></label>
@@ -94,14 +92,14 @@ $_confirm_email = "Confirme seu e-mail";
                                         </div>
                                     </div>
 
-                                    <?php if (rand(5,7) == 6): ?>
+                                    <?php //if (rand(5,7) == 6): ?>
                                         <div class="form-group float-label-control" id="phone">
                                             <label for="phone" class="col-sm-4 control-label">Telefone</label>
                                             <div class="col-sm-7">
-                                                <input class="form-control form-text" type="text" id="phone" name="phone" value="">
+                                                <input class="form-control form-text" tabindex="-1" autocomplete="false" type="text" id="phone" name="phone" value="">
                                             </div>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php //endif; ?>
 
                                     <div class="col-md-6 form-group float-label-control">
                                         <label for="last_name" class="no-padding control-label"> Sobrenome <span class="required">*</span> </label>
