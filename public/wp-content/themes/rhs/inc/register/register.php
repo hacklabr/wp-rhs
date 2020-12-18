@@ -32,8 +32,7 @@ class RHSRegister extends RHSMessage {
 
             // HoneyPot fields
             if ((isset($_POST['mail']) && empty($_POST['mail'])) ||
-                (isset($_POST['pass']) && empty($_POST['pass'])) ||
-                (isset($_POST['mail_confirm']) && empty($_POST['mail_confirm']))) {
+                (isset($_POST['pass']) && empty($_POST['pass']))) {
 
                 return;
             }
