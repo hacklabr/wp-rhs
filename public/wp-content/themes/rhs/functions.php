@@ -74,7 +74,9 @@ if(!function_exists('rhs_setup')) :
         show_admin_bar( false );
 
         //Desabilita o FTP na instalação de Plugins
-        define('FS_METHOD', 'direct');
+        if(!defined('FS_METHOD')) {
+            define('FS_METHOD', 'direct');
+        }
         /**
         * Classe usada nos menus.
         * A mesma facilita o uso das classes usadas na tag nav do bootstrap com o wordpress.
