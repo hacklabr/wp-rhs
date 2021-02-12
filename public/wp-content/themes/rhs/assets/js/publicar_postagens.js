@@ -2,8 +2,12 @@ jQuery(document).ready(function() {
 
     wp.media.featuredImage.select = function() {
         wp.media.view.settings.post.featuredImageId = this.get('selection').single().id;
-        var imgurl = this.get('selection').single().attributes.sizes.thumbnail.url;
-
+        if ( typeof this.get('selection').single().attributes.sizes.thumbnail !== "undefined" && variable) {
+            var imgurl = this.get('selection').single().attributes.sizes.thumbnail.url;
+            
+        } else{
+            var imgurl = this.get('selection').single().attributes.sizes.full.url;
+        }
         //set image id to hidden input
         document.getElementById("img_destacada").value = this.get('selection').single().id;
         jQuery("#img_destacada_preview").html('<img src="'+imgurl+'">');
