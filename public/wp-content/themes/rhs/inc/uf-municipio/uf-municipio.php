@@ -222,7 +222,7 @@ Class UFMunicipio {
             echo $params['label_after'];
         }
         echo $params['select_before']; ?>
-            <select name="<?php echo $params['state_field_name']; ?>" tabindex="<?php echo $params['tabindex_state']; ?>"
+            <select required='true' name="<?php echo $params['state_field_name']; ?>" tabindex="<?php echo $params['tabindex_state']; ?>"
                     class="<?php echo $params['select_class']; ?>" id="<?php echo $params['state_field_id']; ?>" style="font-size: 12.5px;">
                 <?php self::print_states_options($params['selected_state']); ?>
             </select>
@@ -242,7 +242,7 @@ Class UFMunicipio {
             echo $params['label_after'];
         }
         echo $params['select_before']; ?>
-            <select name="<?php echo $params['city_field_name']; ?>" tabindex="<?php echo $params['tabindex_city']; ?>" class="<?php echo $params['select_class']; ?>" id="<?php echo $params['city_field_id']; ?>">
+            <select required='true' name="<?php echo $params['city_field_name']; ?>" tabindex="<?php echo $params['tabindex_city']; ?>" class="<?php echo $params['select_class']; ?>" id="<?php echo $params['city_field_id']; ?>">
                 <?php self::print_cities_options($params['selected_state'], $params['selected_municipio']); ?>
             </select>
         <?php

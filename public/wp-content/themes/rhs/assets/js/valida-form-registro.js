@@ -451,7 +451,17 @@ jQuery( function( $ ) {
                 },
                 'comunity-status[]': {
                     required: 'Selecione onde será publicado.'
+                },
+                municipio: {
+                    required: 'Selecione a cidade.'
+
+                },
+                estado: {
+                    required: 'Selecione o estado.'
+
                 }
+
+
             },
             invalidHandler: function (event, validator) {},
             errorPlacement: function (error, element) {

@@ -2,7 +2,7 @@ jQuery(document).ready(function() {
 
     wp.media.featuredImage.select = function() {
         wp.media.view.settings.post.featuredImageId = this.get('selection').single().id;
-        if ( typeof this.get('selection').single().attributes.sizes.thumbnail !== "undefined" && variable) {
+        if ( typeof ( this.get('selection').single().attributes.sizes.thumbnail ) !== "undefined" && this.get('selection').single().attributes.sizes.thumbnail  !== null) {
             var imgurl = this.get('selection').single().attributes.sizes.thumbnail.url;
             
         } else{
